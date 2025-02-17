@@ -1,0 +1,34 @@
+1. crear carpetas client y backend
+2. instalar en backend:
+npm init -y
+npm i express pg cors dotenv
+npm i nodemon -D
+3. instalar en client
+npx create-react-app .
+
+
+
+BACKEND
+1. .env
+2. config.js
+3. db.js
+4. controllers
+5. routes
+6. index.js -> server
+
+node inde.js -> RUN SERVER
+
+
+FORNTEND - CLIENT
+1. src/componets 
+npm i react-router-dom -> para rutas del frontend
+app.js -> modificar para usar rutas
+npm install @mui/material @emotion/react @emotion/styled -> Material UI
+2. api.js -> integrar Axios en vez de usar fectch
+npm install axios
+nom i sweetalert2 -> Opcional
+
+
+
+
+run start -> RUN CLIENT
