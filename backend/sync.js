@@ -4,7 +4,7 @@
  */
 
 const sequelize = require("./config/db");
-const Customer = require("./models/customer.model");
+const Model = require("./models/product.model");
 
 async function syncDB() {
   try {

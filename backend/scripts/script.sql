@@ -7,7 +7,7 @@ create table products (
 )
 
 create table customers (
-    idcustomer SERIAL,
+    idcustomer SERIAL primary key,
     documentcustomer varchar(20) UNIQUE,
     firstnamecustomer varchar(20),
     lastnamecustomer varchar(20),
@@ -15,6 +15,23 @@ create table customers (
     phonecustomer varchar(20)
     statuscustomer boolean
 )
+
+create table invoice(
+idinvoice serial primary key,
+idcustomer int references customers(idcustomer),
+dateinvoice DATE NOT NULL,
+totalinvoice decimal(10,4)
+);
+
+CREATE TABLE invoice_details (
+    idinvoicedetail SERIAL PRIMARY KEY,
+    idinvoice INTEGER NOT NULL,
+    idproduct int references products(idproduct),
+    quantity INTEGER NOT NULL,
+    unitprice DECIMAL(10, 2) NOT NULL,
+    totalprice DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (idinvoice) REFERENCES invoice(idinvoice)
+);
 
 
 
