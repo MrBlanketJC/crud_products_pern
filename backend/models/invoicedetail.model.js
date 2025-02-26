@@ -41,10 +41,5 @@ const InvoiceDetail = sequelize.define("InvoiceDetail", {
     timestamps: false
 })
 
-//Relacion definir
-InvoiceDetail.belongsTo(Product, {
-    foreignKey: "idproduct",
-    as: "products"
-})
 
 module.exports = InvoiceDetail;

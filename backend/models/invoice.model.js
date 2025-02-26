@@ -29,10 +29,4 @@ const Invoice = sequelize.define("Invoice", {
     timestamps: false
 });
 
-//Relacion
-Invoice.belongsTo(Customer, {
-    foreignKey: "idcustomer",
-    as: "customer"
-})
-
 module.exports = Invoice;
