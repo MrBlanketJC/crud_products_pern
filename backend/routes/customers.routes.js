@@ -1,9 +1,10 @@
 const { Router } =  require('express')
-const { getCustomers, getCustomerByID, updateCustomer, deleteCustomer, createCustomer, checkDuplicateCustomer } = require('../controllers/customers.controller')
+const { getCustomers, getCustomerByID, updateCustomer, deleteCustomer, createCustomer, checkDuplicateCustomer, searchCustomers } = require('../controllers/customers.controller')
 
 const router = Router();
 
 router.get('/customers', getCustomers);
+router.get("/customers/search", searchCustomers); // Nueva ruta para buscar clientes
 router.get('/customers/:id', getCustomerByID)
 router.post('/customers', createCustomer)
 router.put('/customers/:id', updateCustomer)

@@ -4,7 +4,6 @@ const Customer = require('../models/customer.model')
 const InvoiceDetail = require("../models/invoicedetail.model"); // Asegúrate de importar el modelo correcto\
 
 const generateXML = require('./xmlGenerator'); // Importar la función generadora de XML
-const { signXML } = require('../services/signer');
 
 //GetAll
 // const getInvoices = async (req, res) => {
@@ -135,18 +134,6 @@ const createInvoice = async (req, res) => {
         // Guardar el XML en un archivo (opcional)
         const fs = require('fs');
         fs.writeFileSync(`factura_${newInvoice.idinvoice}.xml`, xml);
-      //FIN
-      //FIRMAR
-        const xmlPath  = `factura_${newInvoice.idinvoice}.xml`
-        console.log("Entrada:" + xmlPath)
-        const signedXmlPath = "factura_firmada.xml"; // Ruta donde se guardará la factura firmada
-        console.log("Salida:" + signedXmlPath)
-        const p12Path = "digital.p12"; // Ruta del certificado
-        const password = "Minchala2023"; // Contraseña del archivo .p12
-
-        // Llamamos a la función de firma
-        const signedXml = signXML(xmlPath, signedXmlPath, p12Path, password);
-
       //FIN
       
       // Respuesta al frontend

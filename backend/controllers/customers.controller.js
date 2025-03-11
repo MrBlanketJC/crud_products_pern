@@ -1,6 +1,6 @@
 const { json } = require('sequelize');
 const Customer = require('../models/customer.model')
-
+const { Op } = require("sequelize");
 
 //GetCustomers
 const getCustomers =  async (req, res) => {
@@ -90,6 +90,30 @@ const checkDuplicateCustomer = async (req, res) => {
     }
   };
 
+  // Search Customers by Name, Last Name, or Email
+const searchCustomers = async (req, res) => {
+    try {
+        const { q } = req.query;
+        if (!q) {
+            return res.status(400).json({ error: "El parámetro de búsqueda es requerido" });
+        }
+        const customers = await Customer.findAll({
+            where: {
+                [Op.or]: [
+                    { firstnamecustomer: { [Op.like]: `%${q}%` } },
+                    { lastnamecustomer: { [Op.like]: `%${q}%` } },
+                    { emailcustomer: { [Op.like]: `%${q}%` } }
+                ]
+            },
+            //order: [['idcustomer', 'ASC']],// Asi ordeno
+            limit: 10
+        });
+        res.status(200).json(customers);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 
 module.exports = {
     getCustomers,
@@ -97,5 +121,6 @@ module.exports = {
     createCustomer,
     updateCustomer,
     deleteCustomer,
-    checkDuplicateCustomer
+    checkDuplicateCustomer,
+    searchCustomers
 }
